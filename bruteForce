@@ -1,0 +1,25 @@
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+var threeSum = function(nums) {
+    nums = nums.sort();
+    const bigArray = [];
+    for(let i = 0; i<nums.length; i++){
+        for(let j = i + 1; j<nums.length; j++){
+            for(let k = j + 1; k<nums.length; k++){
+                if(nums[i] + nums[j] + nums[k] === 0 && i !== j && i !== k && j !== k){
+                    const smallArray = [];
+                    smallArray.push(nums[i]);
+                    smallArray.push(nums[j]);
+                    smallArray.push(nums[k]);
+                    bigArray.push(smallArray);
+                }
+            }
+        }
+    }
+    const stringArray = bigArray.map(JSON.stringify) ;
+    const uniqueStringArray = new Set(stringArray);
+    const uniqueArray = Array.from(uniqueStringArray, JSON.parse);
+    return uniqueArray;
+}
